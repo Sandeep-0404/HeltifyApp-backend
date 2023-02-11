@@ -236,4 +236,28 @@ router.post('/api/appointments/doctoruser',async (req,res)=>
     }
 })
 
+
+// ##################### Quotes #######################
+
+router.get('/api/quotes',async(req,res)=>
+{
+    try{
+        const getData=await QSchema.find({});
+        res.send(getData);
+    }catch(e){
+        console.log(e);
+    }
+})
+
+router.post("/api/quotes",async (req,res)=>
+{
+    try{
+        const addData=await new QSchema(req.body);
+        addData.save();
+        res.send(addData);
+    }catch(e){
+        console.log(e);
+    }
+})
+
 module.exports=router;
